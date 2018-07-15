@@ -1,4 +1,4 @@
-#include <roman/RomanConverter.h>
+#include <roman/RomanConverter.hpp>
 
 #include <gtest/gtest.h>
 
