@@ -5,7 +5,7 @@ namespace roman
 {
 namespace converter
 {
-unsigned convert_to_arabic(const roman::validator::RomanValidator& validator, std::string roman)
+unsigned convert_to_arabic(const roman::validator::RomanValidatorInterface& validator, std::string roman)
 {
     if(!validator.isValid(roman))
     {
@@ -35,6 +35,7 @@ unsigned convert_to_arabic(const roman::validator::RomanValidator& validator, st
             return 1000;
         }
     }
+    throw std::exception();
 }
 }
 }

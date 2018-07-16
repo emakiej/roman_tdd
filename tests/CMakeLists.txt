@@ -7,6 +7,7 @@ target_link_libraries(converter_tests
     roman_converter
     gtest_main
     gtest
+    gmock
     )
 
 add_test(NAME test_converter_test COMMAND converter_tests)
