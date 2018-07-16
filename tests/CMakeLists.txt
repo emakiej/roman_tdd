@@ -1,4 +1,4 @@
-set(TEST_FILES RomanConverterTest.cpp)
+set(TEST_FILES RomanConverterTest.cpp RomanValidatorTest.cpp)
 
 add_executable(converter_tests ${TEST_FILES})
 add_dependencies(converter_tests roman_converter)
