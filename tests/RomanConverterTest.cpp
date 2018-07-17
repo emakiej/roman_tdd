@@ -1,5 +1,5 @@
 #include <roman/RomanConverter.h>
-#include <roman/RomanValidator.hpp>
+#include "RomanValidatorMock.hpp"
 
 #include <gtest/gtest.h>
 
@@ -7,12 +7,16 @@ namespace
 {
 
 using namespace roman::converter;
-using namespace roman::validator; //!
 using namespace testing;
 
 struct ConverterTest : public Test
 {
-    RomanValidator validator;
+    void SetUp() override
+    {
+        //test custom mock method with on call (returned value overrided)
+        EXPECT_CALL(validator, isValid(_)).WillOnce(Return(true));
+    }
+    StrictMock<RomanValidatorMock> validator;
 };
 
 TEST_F(ConverterTest, WhenEmptyShouldReturnZero)

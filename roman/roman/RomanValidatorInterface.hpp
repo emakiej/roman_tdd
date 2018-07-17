@@ -10,7 +10,9 @@ class RomanValidatorInterface
 {
 public:
     virtual bool isValid(std::string) const = 0;
-    virtual ~RomanValidatorInterface() {}
+    virtual ~RomanValidatorInterface()
+    {
+    }
 };
 }
 }
