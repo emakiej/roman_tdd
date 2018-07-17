@@ -1,0 +1,11 @@
+1. zamien rzucane wyjatki(najlepiej wrzystkie) na logowanie z uzyciem funkcji Logger::error dodaj logowanie inputu
+    convertera zapomoca funkcji Logger::info uywajac odpowiednich struktur udostepnianych przez gogletest,
+    uzupelnij testy o sprawdzenie,
+    czy funkcje loggera error i info sa opdpowiednio uzywane (najlepiej takze, czy nie ma redundantnych wywolan)
+
+2. dopisz w TDD funkcjonalnosc validatora dla wielu znakow
+
+3. pojawi sie w miare mozliwosci 
+
+komentarze do podjetych decyzji mile widziane :)
+
