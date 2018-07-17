@@ -13,7 +13,7 @@ struct ConverterTest : public Test
 {
     void SetUp() override
     {
-        //test custom mock method with on call (returned value overrided)
+        // test custom mock method with on call (returned value overrided)
         EXPECT_CALL(validator, isValid(_)).WillOnce(Return(true));
     }
     StrictMock<RomanValidatorMock> validator;
@@ -57,6 +57,26 @@ TEST_F(ConverterTest, WhenSingleDShouldReturn500)
 TEST_F(ConverterTest, WhenSingleMShouldReturn1000)
 {
     EXPECT_EQ(convert_to_arabic(validator, "M"), 1000);
+}
+
+TEST_F(ConverterTest, WhenMultipleInputNotAscendingOrderShortestFormShouldReturnSum)
+{
+    EXPECT_EQ(convert_to_arabic(validator, "VIII"), 8);
+}
+
+TEST_F(ConverterTest, WhenMultipleInputNotAscendingOrderNotShortestFormShouldReturnSum)
+{
+    EXPECT_EQ(convert_to_arabic(validator, "IIIIIIII"), 8);
+}
+
+TEST_F(ConverterTest, WhenTwoCharactersAscendingOrderShouldReturnSubstraction)
+{
+    EXPECT_EQ(convert_to_arabic(validator, "IV"), 4);
+}
+
+TEST_F(ConverterTest, WhenMultipleCharactersMixedOrderShouldReturnGeneralSum)
+{
+    EXPECT_EQ(convert_to_arabic(validator, "IVXL"), 34);
 }
 
 TEST_F(ConverterTest, WhenSingleWrongCharacterShouldThrow)

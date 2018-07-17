@@ -1,41 +1,36 @@
 #include <roman/RomanConverter.h>
 #include <exception>
+#include <unordered_map>
 
 namespace roman
 {
 namespace converter
 {
-unsigned convert_to_arabic(const roman::validator::RomanValidatorInterface& validator, std::string roman)
+unsigned convert_to_arabic(const roman::validator::RomanValidatorInterface& validator, std::string input)
 {
-    if(!validator.isValid(roman))
+    if(!validator.isValid(input))
     {
         throw std::exception();
     }
-    if(roman.empty())
+
+    const std::unordered_map<char, unsigned> roman_digit_2_arabic = {{'I', 1},   {'V', 5},   {'X', 10},  {'L', 50},
+                                                                     {'C', 100}, {'D', 500}, {'M', 1000}};
+    int value = 0;
+    char prev = '%';
+    for(int i = (input.length() - 1); i >= 0; i--)
     {
-        return 0;
-    }
-    else if(roman.length() == 1)
-    {
-        switch(roman.at(0))
+        if(roman_digit_2_arabic.at(input[i]) < value && (input[i] != prev))
         {
-        case 'I':
-            return 1;
-        case 'V':
-            return 5;
-        case 'X':
-            return 10;
-        case 'L':
-            return 50;
-        case 'C':
-            return 100;
-        case 'D':
-            return 500;
-        case 'M':
-            return 1000;
+            value -= roman_digit_2_arabic.at(input[i]);
+            prev = input[i];
+        }
+        else
+        {
+            value += roman_digit_2_arabic.at(input[i]);
+            prev = input[i];
         }
     }
-    throw std::exception();
+    return value;
 }
 }
 }
